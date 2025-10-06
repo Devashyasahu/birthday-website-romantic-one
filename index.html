@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Thrilling Mission — Interactive</title>
+  <link rel="stylesheet" href="index.css" />
+  
+</head>
+<body>
+  <div class="wrap">
+    <section class="active" id="hero">
+      <div class="hero-content">
+        <h1>Your Secret Mission Starts Now! 🕵️</h1>
+        <p class="lead">Every click, every scroll, every answer leads you closer to the grand finale. Ready for a thrill?</p>
+        <button class="btn" id="skipBtn">Accept Mission 🚀</button>
+      </div>
+      <div class="scroll-down">↓</div>
+    </section>
+
+    <section id="timeline">
+      <div class="tl-title">Memory Vault: Decrypting Our Love Story</div>
+      <div class="tl-track" id="tlTrack">
+        <div class="tl-card" data-index="0">
+          <img src="asset/section 2 (1).jpg" alt="First coffee" class="tl-card-img" />
+          <div class="tl-caption">First coffee ☕</div>
+        </div>
+        <div class="tl-card" data-index="1">
+          <img src="asset/section 2(3).jpg" alt="Rainy walk" class="tl-card-img" />
+          <div class="tl-caption">Road trip 🚗 </div>
+        </div>
+        <div class="tl-card" data-index="2">
+          <img src="asset/section 2(2).jpg" alt="Road trip" class="tl-card-img" />
+          <div class="tl-caption"> Holi celebration 🌧️</div>
+        </div>
+        <div class="tl-card" data-index="3">
+          <img src="asset/section 2(4).jpg" alt="Laughs" class="tl-card-img" />
+          <div class="tl-caption">Garba Night</div>
+        </div>
+      </div>
+      <button class="btn" id="toSurprise">Mission Phase 2 ➡️</button>
+    </section>
+
+    <section id="secret">
+      <h3>🔐 The Code to My Heart 🔐</h3>
+      <p>Solve this riddle to unlock your secret message:</p>
+      <p>_I am the place where we first knew this feeling was real. You whispered my name, and our fate was sealed. What am I?_</p>
+      
+      <form id="secretForm">
+        <input type="text" id="secretInput" placeholder="Enter the Code Word (e.g., Beach)">
+        <div id="secretMessage"></div>
+        <button type="submit" class="btn" id="submitCode">Decode</button>
+      </form>
+
+      <button class="btn" id="toFun" style="display:none; margin-top: 20px;">Success! Next Mission ➡️</button>
+    </section>
+
+    <div class="modal" id="surpriseModal">
+      <div class="card">
+        <h3>✨ You Solved It! ✨</h3>
+        <p>This secret is just for you. Every moment we share is a treasure. You are my greatest adventure, and I love you more than words can say. Happy Birthday! 💖</p>
+        <button class="btn" id="closeSurprise">Acknowledge</button>
+      </div>
+    </div>
+
+    <section id="fun">
+      <div class="fun-area" id="funArea"></div>
+      <p>Quick! **Hover over** the hearts for hidden love notes before they disappear! ❤️‍🔥</p>
+      <button class="btn" id="toEnd">Final Phase ➡️</button>
+    </section>
+
+    <section id="end" class="section">
+      <div id="finalWish" class="big-happy">
+        Click my wish to explode the final celebration!
+      </div>
+    </section>
+
+  </div> <div class="toast-container" id="toastContainer"></div>
+  <canvas id="fireworks-canvas"></canvas>
+  <canvas id="particle-canvas"></canvas>
+
+ <script src="index.js"></script>
+</body>
+</html>

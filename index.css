@@ -1,0 +1,400 @@
+/* 1. Global Styles and Variables */
+    /* 2. Hero Section */
+    :root{
+        --accent:#ff3b3b;
+        --bg:#0b0a12;
+        --glass:rgba(255,255,255,0.06);
+        --text-color:#eee;
+        --primary-glow:rgba(255,59,59,0.4)
+    }
+
+    *{
+        box-sizing:border-box;
+        font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial
+    }
+
+    html,body{
+        height:100%;
+        margin:0;
+        background:linear-gradient(180deg,#07060a 0%, #0f0d16 100%);
+        color:var(--text-color);
+        scroll-behavior:smooth;
+        overflow-x:hidden
+    }
+
+    .wrap{
+        min-height:100%;
+        display:flex;
+        flex-direction:column
+    }
+
+
+    section{
+        display:none;
+        min-height:100vh;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        padding:2rem
+    }
+
+    section.active{display:flex}
+
+    /* 1. Hero Content Entrance Animation */
+    .hero-content{
+        position:relative;
+        z-index:3;
+        text-align:center;
+        padding:3rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: heroFadeIn 1s ease-out 0.5s forwards;
+    }
+    @keyframes heroFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    header.hero{
+        position:relative;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden
+    }
+
+    
+    /* Z-Index Fix: Ensure fireworks/confetti canvas is always on top of background particles */
+    #particle-canvas{
+        position:absolute;
+        inset:0;
+        z-index:90; 
+    }
+
+    #fireworks-canvas{
+        position:absolute;
+        inset:0;
+        z-index:91; 
+    }
+
+    
+    h1{
+        font-size:3rem;
+        margin:.5rem 0;
+        text-shadow:0 6px 30px rgba(255,0,0,0.05)
+    }
+
+    .btn{
+        background:linear-gradient(90deg,var(--accent),#ff6b6b);
+        border:none;
+        padding:.75rem 1.2rem;
+        border-radius:999px;
+        color:#111;
+        font-weight:700;
+        cursor:pointer;
+        transition:transform .2s, box-shadow .2s;
+    }
+    /* Button Hover Effect: Glow */
+    .btn:hover{
+        transform:scale(1.07);
+        box-shadow: 0 0 15px rgba(255, 59, 59, 0.6);
+    }
+
+    .scroll-down{
+        position:absolute;
+        bottom:30px;
+        font-size:2rem;
+        color:var(--accent);
+        animation:bounce 2s infinite}
+    @keyframes bounce{
+        0%,20%,50%,80%,100%{transform:translateY(0)}
+        40%{transform:translateY(-15px)}
+        60%{transform:translateY(-7px)}}
+
+    .tl-title{
+        font-size:1.6rem;
+        margin-bottom:1rem;
+        text-align:center;
+    }
+
+    .tl-track{
+        display:flex;
+        gap:1rem;
+        overflow-x:auto;
+        padding-bottom:1rem;
+        scroll-snap-type:x mandatory
+    }
+
+    .tl-card{
+        min-width:300px;
+        background:rgba(255,255,255,0.03)
+        ;border-radius:12px;
+        padding:1rem;
+        flex:0 0 auto;
+        scroll-snap-align:center;
+        transition:all 0.8s ease-out; /* Increase transition time for blur/reveal */
+        /* Default state: hidden, blurred, and desaturated (The Vault) */
+        opacity: 0.1;
+        filter: blur(5px) grayscale(80%);
+        transform: scale(0.9);
+    }
+    
+    /* State when memory is unlocked by JS timer */
+    .tl-card.tl-card-revealed {
+        opacity: 1;
+        filter: blur(0) grayscale(0);
+        transform: scale(1);
+    }
+
+    .tl-card:hover{
+        transform:scale(1.05);
+        box-shadow: 0 0 15px var(--primary-glow);
+    }
+    /* Dynamic Timeline: Class applied by JS when card is centered in view */
+    .tl-card.tl-card-active {
+        transform: scale(1.1); /* Zoom in more than hover */
+        box-shadow: 0 0 25px 8px var(--primary-glow); /* Stronger glow */
+        background: rgba(255,255,255,0.05); /* Slightly brighter background */
+    }
+    
+    /* New style for clean placeholder cards (replace when adding real images) */
+    .tl-card-img-placeholder {
+        width: 100%;
+        height: 170px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(255, 59, 59, 0.5), rgba(255, 107, 107, 0.3)); 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .tl-card img{
+        width:100%;
+        height:170px;
+        object-fit:contain;
+        border-radius:8px; /* Kept for when you add real images */
+    } 
+    
+    /* Thrilling Riddle Input Style */
+    #secretForm{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+        margin-top:20px
+    }
+
+    #secretInput{
+        padding:.8rem 1rem;
+        border-radius:8px;
+        border:2px solid var(--accent);
+        background:transparent;
+        color:var(--text-color);
+        width:250px;
+        text-align:center
+    }
+
+    #secretInput:focus{
+        outline:none;
+        border-color:#ff6b6b;
+        box-shadow: 0 0 10px var(--primary-glow); /* Glowing focus effect */
+    }
+
+    #secretMessage{
+        color:var(--accent);
+        font-weight:600;height:1.2em
+    }
+
+    /* Modal Animation */
+    .modal{
+        position:fixed;
+        inset:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(0,0,0,0.6);
+        z-index:40;opacity:0;
+        pointer-events:none;
+        transition:all .25s ease-out
+    }
+
+    .modal.show{
+        opacity:1;
+        pointer-events:auto
+    }
+
+    .modal .card{
+        background:#0b0710;
+        padding:2rem;
+        border-radius:16px;
+        min-width:320px;
+        text-align:center;
+        box-shadow:0 10px 40px rgba(0,0,0,.6);
+        transform:scale(0.8);
+        opacity:0;
+        transition:transform .3s ease-out, opacity .3s ease-out;
+    }
+
+    .modal.show .card{
+        transform:scale(1);
+        opacity:1
+    }
+
+    /* Fix: Ensure fun-area has defined space for hearts to appear */
+
+    .fun-area{
+        position:relative;
+        min-height:300px; 
+        width: 80%; 
+        max-width: 600px; 
+        border-radius:12px;
+        overflow:hidden;
+        border:2px dashed var(--primary-glow); 
+        margin-bottom: 25px; 
+    }
+    /* Hearts fall faster now (3s instead of 8s) for a thrill */
+    .heart{
+        position:absolute;
+        font-size:20px;
+        color: var(--accent); /* HEARTS ARE NOW ACCENT COLOR */
+        opacity:.95;
+        cursor:pointer;
+        user-select:none;
+        animation:floatUp 3s linear forwards;
+        transition: transform 0.1s ease-out, filter 0.1s ease-out; /* Added smooth hover transition */
+    }
+    /* Heart Hover Effect: PAUSE MOVEMENT, SCALE UP, AND GLOW */
+    .heart:hover {
+        transform: scale(1.5); 
+        filter: brightness(1.5);
+        animation-play-state: paused; /* THIS STOPS THE HEART MOVEMENT! */
+    }
+
+    @keyframes floatUp{from{transform:translateY(0)}to{transform:translateY(-240px) scale(1.2);opacity:0;}}
+
+    /* Final Wish Element Styling */
+    .big-happy{
+        font-size:2.2rem;
+        font-weight:800;
+        color:#fff; /* Changed to white for better contrast on red background */
+        text-shadow:0 8px 40px rgba(255,60,60,.06);
+        cursor:pointer;
+        transition:transform .2s;
+        /* Pulse + Subtle text glow animation for final step */
+        animation: pulse 1.5s infinite alternate, finalGlow 3s infinite alternate;
+        
+        /* CRITICAL Z-INDEX FIX */
+        position: relative; /* Needed for z-index to work */
+        z-index: 100;      /* Ensure it's on top of canvases (91) */
+        padding: 2rem;
+        background: var(--accent); /* Use accent color for the block */
+        border-radius: 1rem;
+        text-align: center;
+    }
+
+    .big-happy:hover{
+        transform:scale(1.1);
+        animation-play-state:paused
+    }
+
+    @keyframes pulse{
+        from{transform:scale(1)}to{transform:scale(1.05)}
+    }
+
+    @keyframes finalGlow {
+        0% { text-shadow: 0 0 5px var(--accent); }
+        100% { text-shadow: 0 0 15px var(--accent); }
+    }
+
+    /* Custom Toast Notification */
+    .toast-container{
+        position:fixed;
+        bottom:20px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:50;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        pointer-events:none
+    }
+
+    .toast-msg{
+        background:var(--accent);
+        color:white;
+        padding:.6rem 1rem;
+        border-radius:12px;
+        box-shadow:0 6px 20px rgba(0,0,0,0.4);
+        opacity:0;animation:fadeInOut 3s ease-in-out forwards
+    }
+    
+    /* Global Canvas Styles */
+    #fireworks-canvas, #particle-canvas {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 91;
+    }
+    
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: flex; /* Changed from 'block' to 'flex' for vertical centering */
+    }
+
+
+    @keyframes fadeInOut{
+        0%,100%{opacity:0;transform:translateY(10px)}
+        10%{opacity:1;transform:translateY(0)}
+        90%{opacity:1;transform:translateY(0)}
+    }
+
+    
+    /* ------------------------------------------------------------------ */
+    /* 4. MEDIA QUERIES FOR RESPONSIVENESS */
+    /* ------------------------------------------------------------------ */
+    
+    /* Extra Small Devices (Smartphones, portrait and landscape) */
+    @media (max-width: 640px) {
+        h1 { 
+            font-size: 2rem; 
+        }
+        
+        .hero-content, .modal .card, section {
+            padding: 1rem;
+        }
+
+        .big-happy {
+            font-size: 1.5rem; /* Shrink final wish text */
+            padding: 1rem;
+        }
+
+        .tl-card { 
+            min-width: 240px; /* Ensure cards are still scrollable but fit better */
+        }
+        
+        #secretInput {
+            width: 200px;
+        }
+    }
+    
+    /* Small to Medium Devices (Tablets, landscape) */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        .big-happy {
+            font-size: 1.8rem;
+        }
+        
+        .tl-card {
+            min-width: 260px;
+        }
+    }
