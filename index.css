@@ -347,8 +347,74 @@
     .section.active {
       display: flex; /* Changed from 'block' to 'flex' for vertical centering */
     }
+    /* --- FOOTER CONTACT LINK STYLE --- */
+/* --- FOOTER STYLES --- */
+#main-footer {
+    width: 100%;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: #000000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 5;
+    /* Since .wrap is a flex column, this pushes the footer to the very bottom */
+    margin-top: auto; 
+}
 
+#main-footer p {
+    margin: 0.5rem 0;
+}
 
+.contact-links {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows links to wrap on small screens */
+}
+
+/* --- FOOTER CONTACT LINK STYLE --- */
+.footer-contact-link {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: var(--accent);
+    color: #0b0a12;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 0.85rem;
+}
+
+.footer-contact-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255, 59, 59, 0.5);
+}
+/* Find and replace the existing 'section' block */
+section {
+    display: none;
+    /* CHANGE THIS LINE: Reduce height to prevent scrolling */
+    min-height: 95vh; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+/* Mobile Fix for Footer Links */
+@media (max-width: 480px) {
+    .contact-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer-contact-link {
+        width: 100%;
+        max-width: 250px; /* Limit width to keep it neat */
+        margin: 0 auto;
+    }
+}
     @keyframes fadeInOut{
         0%,100%{opacity:0;transform:translateY(10px)}
         10%{opacity:1;transform:translateY(0)}
